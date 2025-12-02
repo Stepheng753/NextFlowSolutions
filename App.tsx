@@ -1,0 +1,51 @@
+import React, { useEffect, useState } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import About from './components/About';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+
+const App: React.FC = () => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+
+  useEffect(() => {
+    // Check localStorage or system preference on mount
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      setTheme('light');
+    }
+  }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans selection:bg-violet-500/30 selection:text-violet-700 dark:selection:text-violet-100 transition-colors duration-300">
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <main>
+        <Hero theme={theme} />
+        <Services />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
