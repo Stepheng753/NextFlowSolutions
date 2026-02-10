@@ -1,13 +1,13 @@
 import React from 'react';
 
-export const ArrowRight: React.FC<{ className?: string }> = ({ className }) => (
+export const ArrowRight = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M5 12h14" />
     <path d="m12 5 7 7-7 7" />
   </svg>
 );
 
-export const BrainCircuit: React.FC<{ className?: string }> = ({ className }) => (
+export const BrainCircuit = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
     <path d="M9 13a4.5 4.5 0 0 0 3-4" />
@@ -22,7 +22,7 @@ export const BrainCircuit: React.FC<{ className?: string }> = ({ className }) =>
   </svg>
 );
 
-export const Bot: React.FC<{ className?: string }> = ({ className }) => (
+export const Bot = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M12 8V4H8" />
     <rect width="16" height="12" x="4" y="8" rx="2" />
@@ -33,13 +33,13 @@ export const Bot: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export const Zap: React.FC<{ className?: string }> = ({ className }) => (
+export const Zap = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
   </svg>
 );
 
-export const BarChart3: React.FC<{ className?: string }> = ({ className }) => (
+export const BarChart3 = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M3 3v18h18" />
     <path d="M18 17V9" />
@@ -48,20 +48,20 @@ export const BarChart3: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export const ChevronRight: React.FC<{ className?: string }> = ({ className }) => (
+export const ChevronRight = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="m9 18 6-6-6-6" />
   </svg>
 );
 
-export const Mail: React.FC<{ className?: string }> = ({ className }) => (
+export const Mail = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <rect width="20" height="16" x="2" y="4" rx="2" />
     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
   </svg>
 );
 
-export const Menu: React.FC<{ className?: string }> = ({ className }) => (
+export const Menu = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <line x1="4" x2="20" y1="12" y2="12" />
     <line x1="4" x2="20" y1="6" y2="6" />
@@ -69,14 +69,14 @@ export const Menu: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export const X: React.FC<{ className?: string }> = ({ className }) => (
+export const X = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M18 6 6 18" />
     <path d="m6 6 12 12" />
   </svg>
 );
 
-export const Sun: React.FC<{ className?: string }> = ({ className }) => (
+export const Sun = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <circle cx="12" cy="12" r="5" />
     <path d="M12 1v2" />
@@ -90,7 +90,7 @@ export const Sun: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export const Moon: React.FC<{ className?: string }> = ({ className }) => (
+export const Moon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
   </svg>

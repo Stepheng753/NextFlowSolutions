@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Zap, Sun, Moon } from './Icons';
-import { NavItem } from '../types';
 import Button from './Button';
 
-const navItems: NavItem[] = [
+const navItems = [
   { label: 'Services', href: '#services' },
   { label: 'About', href: '#about' },
   { label: 'Process', href: '#process' },
 ];
 
-interface NavbarProps {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
+const Navbar = ({ theme, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -26,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
+  const scrollToSection = (href) => {
     setIsMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
@@ -36,11 +30,10 @@ const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        isScrolled
-          ? 'bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-slate-200 dark:border-slate-800 py-4 shadow-sm dark:shadow-none'
-          : 'bg-transparent border-transparent py-6'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${isScrolled
+        ? 'bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-slate-200 dark:border-slate-800 py-4 shadow-sm dark:shadow-none'
+        : 'bg-transparent border-transparent py-6'
+        }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
@@ -64,8 +57,8 @@ const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
               {item.label}
             </button>
           ))}
-          
-          <button 
+
+          <button
             onClick={toggleTheme}
             className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none"
             aria-label="Toggle theme"
@@ -80,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-4">
-           <button 
+          <button
             onClick={toggleTheme}
             className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >

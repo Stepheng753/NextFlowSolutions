@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrainCircuit, Bot, BarChart3, Zap, ArrowRight } from './Icons';
-import { ServiceItem } from '../types';
 
-const services: ServiceItem[] = [
+const services = [
 	{
 		title: 'Intelligent Chatbots',
 		description: 'Custom-trained LLMs that handle customer support, internal queries, and lead qualification 24/7.',
@@ -27,7 +26,7 @@ const services: ServiceItem[] = [
 ];
 
 // Helper to get styles based on index
-const getCardStyles = (index: number) => {
+const getCardStyles = (index) => {
 	if (index % 3 === 0) {
 		// Cyan
 		return {
@@ -52,7 +51,7 @@ const getCardStyles = (index: number) => {
 	}
 };
 
-const Services: React.FC = () => {
+const Services = () => {
 	return (
 		<section id="services" className="py-24 bg-slate-50 dark:bg-slate-950 relative transition-colors duration-300">
 			{/* Subtle grid background */}

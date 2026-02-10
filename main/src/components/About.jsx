@@ -1,6 +1,7 @@
 import React from 'react';
+import optimizationImg from '../assets/optimization.jpg';
 
-const About: React.FC = () => {
+const About = () => {
 	return (
 		<section
 			id="about"
@@ -14,7 +15,7 @@ const About: React.FC = () => {
 					<div className="relative">
 						<div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-violet-600 rounded-2xl opacity-20 dark:opacity-30 blur-lg"></div>
 						<img
-							src="../assets/optimization.jpg"
+							src={optimizationImg}
 							alt="Team working on AI"
 							className="relative rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full object-cover"
 						/>

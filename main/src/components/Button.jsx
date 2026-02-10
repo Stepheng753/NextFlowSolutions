@@ -1,20 +1,15 @@
 import React from 'react';
 import { ArrowRight } from './Icons';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'purple' | 'gradient';
-  showArrow?: boolean;
-}
-
-const Button: React.FC<ButtonProps> = ({ 
-  children, 
-  variant = 'primary', 
-  showArrow = false, 
-  className = '', 
-  ...props 
+const Button = ({
+  children,
+  variant = 'primary',
+  showArrow = false,
+  className = '',
+  ...props
 }) => {
   const baseStyles = "inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed";
-  
+
   const variants = {
     primary: "bg-cyan-500 hover:bg-cyan-400 text-slate-950 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] border border-transparent",
     secondary: "bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 shadow-sm",
@@ -24,8 +19,8 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button 
-      className={`${baseStyles} ${variants[variant]} ${className}`} 
+    <button
+      className={`${baseStyles} ${variants[variant]} ${className}`}
       {...props}
     >
       {children}

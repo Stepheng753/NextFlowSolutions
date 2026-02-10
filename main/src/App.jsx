@@ -6,12 +6,12 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-const App: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+const App = () => {
+  const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
     // Check localStorage or system preference on mount
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setTheme(savedTheme);
     } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {

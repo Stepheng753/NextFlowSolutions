@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Button from './Button';
 import { Mail } from './Icons';
 
-const Contact: React.FC = () => {
+const Contact = () => {
 	const [formState, setFormState] = useState({ name: '', email: '', message: '' });
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	const handleChange = (e) => {
 		setFormState({ ...formState, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = async (e: React.FormEvent) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			const response = await fetch('https://n8n.stepheng753.com/webhook/contact', {
