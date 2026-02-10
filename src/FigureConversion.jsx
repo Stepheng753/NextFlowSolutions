@@ -175,7 +175,7 @@ const FigureConversion = ({ navigate }) => {
                             <div className="grid md:grid-cols-2 gap-8">
                                 <div>
                                     <h4 className="font-semibold text-slate-700 mb-3">Original Upload</h4>
-                                    <div className="aspect-video bg-slate-100 rounded-lg flex items-center justify-center border border-slate-200 overflow-hidden relative">
+                                    <div className="w-[375px] h-[375px] bg-slate-100 rounded-lg flex items-center justify-center border border-slate-200 overflow-hidden relative">
                                         {previewUrl ? (
                                             <img
                                                 src={previewUrl}
@@ -191,7 +191,9 @@ const FigureConversion = ({ navigate }) => {
                                     <h4 className="font-semibold text-amber-700 mb-3 flex items-center gap-2">
                                         <CheckCircle className="w-4 h-4" /> AI Generated Result
                                     </h4>
-                                    <img src={resultImage} alt="Generated" className="rounded-lg shadow-sm border border-slate-200 w-full" />
+                                    <div className="w-[375px] h-[375px] bg-slate-100 rounded-lg flex items-center justify-center border border-slate-200 overflow-hidden relative">
+                                        <img src={resultImage} alt="Generated" className="w-full h-full object-contain" />
+                                    </div>
                                 </div>
                             </div>
 
