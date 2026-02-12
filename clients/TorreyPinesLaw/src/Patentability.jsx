@@ -72,7 +72,7 @@ const PatentabilityAnalysis = ({ navigate }) => {
                     {step === 'upload' && (
                         <div className="h-full flex flex-col justify-center">
                             <FileDropzone
-                                accept=".pdf,.doc,.docx"
+                                accept=".pdf,.docx"
                                 label="Upload IDF (PDF/DOCX) - Confidential"
                                 icon={FileText}
                                 onFileSelect={handleUpload}
