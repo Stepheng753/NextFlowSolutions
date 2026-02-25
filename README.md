@@ -22,3 +22,26 @@ NextFlow Solutions is an automation agency specialized in designing and deployin
 ## **Operational Philosophy**
 * **Language Agnostic Approach:** Utilizing the best tool for the job, whether low-code (n8n) or code-heavy (Python/JS).
 * **Self-Hosted Capabilities:** Strong emphasis on data privacy and control, leveraging experience with self-hosted environments (e.g., Docker, Linux).
+
+## **Running the Application**
+To run the client portals (e.g., Torrey Pines Law), you will need Node.js and npm installed.
+
+```bash
+# Navigate to the specific client directory
+cd clients/TorreyPinesLaw
+
+# Install dependencies if you haven't already
+npm install
+
+# Start the Vite development server
+npm run dev
+```
+
+Once the development server is running, the application will typically be accessible at `http://localhost:5173`.
+
+### Dynamic Branding
+To view the Torrey Pines Law branding, append one of the valid identifiers (`torreypineslaw`, `torreypineslawgroup`, `torreypinesconsulting`, `tpl`, `tpc`) to the URL as a query parameter. For example:
+- `http://localhost:5173/?torreypineslaw`
+- `http://localhost:5173/?client=tpl`
+
+If no valid identifier is provided, the application will default to a generic "Placeholder Law Group" branding.
