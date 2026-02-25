@@ -24,11 +24,11 @@ NextFlow Solutions is an automation agency specialized in designing and deployin
 * **Self-Hosted Capabilities:** Strong emphasis on data privacy and control, leveraging experience with self-hosted environments (e.g., Docker, Linux).
 
 ## **Running the Application**
-To run the client portals (e.g., Torrey Pines Law), you will need Node.js and npm installed.
+To run the client portals (e.g., LawIP), you will need Node.js and npm installed.
 
 ```bash
 # Navigate to the specific client directory
-cd clients/TorreyPinesLaw
+cd clients/LawIP
 
 # Install dependencies if you haven't already
 npm install
@@ -40,8 +40,8 @@ npm run dev
 Once the development server is running, the application will typically be accessible at `http://localhost:5173`.
 
 ### Dynamic Branding
-To view the Torrey Pines Law branding, append one of the valid identifiers (`torreypineslaw`, `torreypineslawgroup`, `torreypinesconsulting`, `tpl`, `tpc`) to the URL as a query parameter. For example:
-- `http://localhost:5173/?torreypineslaw`
+To view the Torrey Pines Law branding, append one of the valid identifiers (`torreypineslaw`, `torreypineslawgroup`, `torreypinesconsulting`, `tpl`, `tpc`, `lawip`) to the URL as a query parameter. For example:
+- `http://localhost:5173/?lawip`
 - `http://localhost:5173/?client=tpl`
 
 If no valid identifier is provided, the application will default to a generic "Placeholder Law Group" branding.

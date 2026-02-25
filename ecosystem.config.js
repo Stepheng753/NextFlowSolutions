@@ -11,10 +11,10 @@ module.exports = {
             }
         },
         {
-            name: "nextflow-torreypineslaw",
+            name: "nextflow-lawip",
             script: "serve",
             env: {
-                PM2_SERVE_PATH: './clients/TorreyPinesLaw/dist',
+                PM2_SERVE_PATH: './clients/LawIP/dist',
                 PM2_SERVE_PORT: 6399,
                 PM2_SERVE_SPA: 'true',
                 PM2_SERVE_HOMEPAGE: '/index.html'
