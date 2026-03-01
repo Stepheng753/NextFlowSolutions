@@ -11,6 +11,7 @@ case $choice in
   1)
     echo "🚀 Deploying Main Landing Page..."
     cd ~/Development/NextFlowSolutions/main
+    npm install
     npm run build
     pm2 reload nextflow-main
     echo "✅ Main Site Deployed!"
@@ -18,6 +19,7 @@ case $choice in
   2)
     echo "🚀 Deploying Legal..."
     cd ~/Development/NextFlowSolutions/Legal
+    npm install
     npm run build
     pm2 reload nextflow-legal
     echo "✅ Client Site Deployed!"
@@ -26,11 +28,13 @@ case $choice in
     echo "🚀 Deploying EVERYTHING..."
     # Main
     cd ~/Development/NextFlowSolutions/main
+    npm install
     npm run build
     pm2 reload nextflow-main
     
     # Client
     cd ~/Development/NextFlowSolutions/Legal
+    npm install
     npm run build
     pm2 reload nextflow-legal
     
