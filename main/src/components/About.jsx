@@ -1,5 +1,5 @@
 import React from 'react';
-import optimizationImg from '../assets/optimization.jpg';
+import optimizationImg from '../assets/optimization.png';
 
 const About = () => {
 	return (
