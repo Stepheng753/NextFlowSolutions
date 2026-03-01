@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle, ChevronLeft, Loader2, AlertCircle, FileImage, Download } from 'lucide-react';
-import Button from './components/Button';
-import FileDropzone from './components/FileDropzone';
-import { CONFIG } from './config';
+import Button from '../components/Button';
+import FileDropzone from '../components/FileDropzone';
+import { CONFIG } from '../config';
 
 const FigureConversion = ({ navigate }) => {
     const [step, setStep] = useState('upload'); // upload, processing, review, feedback
@@ -129,8 +129,8 @@ const FigureConversion = ({ navigate }) => {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in">
-            <Button variant="outline" onClick={() => navigate('home')} className="mb-8 border-none px-0 hover:bg-transparent justify-start">
-                <ChevronLeft className="w-5 h-5" /> Back to Dashboard
+            <Button variant="outline" onClick={() => navigate('ip-law')} className="mb-8 border-none px-0 hover:bg-transparent justify-start">
+                <ChevronLeft className="w-5 h-5" /> Back to IP Law
             </Button>
 
             <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
@@ -166,7 +166,7 @@ const FigureConversion = ({ navigate }) => {
                         <div className="py-20 flex flex-col items-center justify-center text-center">
                             <Loader2 className="w-12 h-12 text-amber-600 animate-spin mb-4" />
                             <h3 className="text-xl font-medium text-slate-800">AI Processing Active</h3>
-                            <p className="text-slate-500 max-w-md mt-2">Connecting to n8n workflow. Analyzing image structure and generating vector-compliant output...</p>
+                            <p className="text-slate-500 max-w-md mt-2">Connecting to workflow. Analyzing image structure and generating vector-compliant output...</p>
                         </div>
                     )}
 

@@ -3,7 +3,7 @@
 # Ask which project to deploy
 echo "Which project are you updating?"
 echo "1) Main Landing Page"
-echo "2) LawIP Client"
+echo "2) Legal Client"
 echo "3) Both"
 read -p "Enter choice [1-3]: " choice
 
@@ -16,10 +16,10 @@ case $choice in
     echo "✅ Main Site Deployed!"
     ;;
   2)
-    echo "🚀 Deploying LawIP..."
-    cd ~/Development/NextFlowSolutions/clients/LawIP
+    echo "🚀 Deploying Legal..."
+    cd ~/Development/NextFlowSolutions/Legal
     npm run build
-    pm2 reload nextflow-lawip
+    pm2 reload nextflow-legal
     echo "✅ Client Site Deployed!"
     ;;
   3)
@@ -30,9 +30,9 @@ case $choice in
     pm2 reload nextflow-main
     
     # Client
-    cd ~/Development/NextFlowSolutions/clients/LawIP
+    cd ~/Development/NextFlowSolutions/Legal
     npm run build
-    pm2 reload nextflow-lawip
+    pm2 reload nextflow-legal
     
     echo "✅ All Systems Deployed!"
     ;;

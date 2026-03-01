@@ -1,11 +1,21 @@
 import React from 'react';
-import { FileImage, Gavel } from 'lucide-react';
+import { FileImage, Gavel, ArrowLeft } from 'lucide-react';
 
-const Home = ({ navigate }) => (
+const IPLawHome = ({ navigate }) => (
     <div className="max-w-6xl mx-auto px-4 py-12 animate-fade-in">
+        <div className="mb-8">
+            <button
+                onClick={() => navigate('home')}
+                className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
+            >
+                <ArrowLeft className="w-5 h-5" />
+                Back to Practices
+            </button>
+        </div>
+
         <div className="text-center mb-16">
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-                Automated Legal Workflows
+                IP Law Workflows
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Leverage our proprietary AI pipelines to accelerate patent analysis and technical figure processing. Secure, efficient, and reliable.
@@ -50,4 +60,4 @@ const Home = ({ navigate }) => (
     </div>
 );
 
-export default Home;
+export default IPLawHome;

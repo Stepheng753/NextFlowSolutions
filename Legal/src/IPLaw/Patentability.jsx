@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronLeft, Loader2, AlertCircle, FileText, Download } from 'lucide-react';
 import html2pdf from 'html2pdf.js';
-import Button from './components/Button';
-import FileDropzone from './components/FileDropzone';
-import { CONFIG } from './config';
+import Button from '../components/Button';
+import FileDropzone from '../components/FileDropzone';
+import { CONFIG } from '../config';
 
 const PatentabilityAnalysis = ({ navigate }) => {
     const [step, setStep] = useState('upload');
@@ -50,8 +50,8 @@ const PatentabilityAnalysis = ({ navigate }) => {
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in">
-            <Button variant="outline" onClick={() => navigate('home')} className="mb-8 border-none px-0 hover:bg-transparent justify-start">
-                <ChevronLeft className="w-5 h-5" /> Back to Dashboard
+            <Button variant="outline" onClick={() => navigate('ip-law')} className="mb-8 border-none px-0 hover:bg-transparent justify-start">
+                <ChevronLeft className="w-5 h-5" /> Back to IP Law
             </Button>
 
             <div className="bg-white rounded-xl shadow-lg border border-slate-200 min-h-[600px] flex flex-col">
