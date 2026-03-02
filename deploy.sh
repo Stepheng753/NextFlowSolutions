@@ -7,6 +7,8 @@ echo "2) Legal Client"
 echo "3) Both"
 read -p "Enter choice [1-3]: " choice
 
+git pull
+
 case $choice in
   1)
     echo "🚀 Deploying Main Landing Page..."
