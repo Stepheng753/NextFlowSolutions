@@ -53,7 +53,7 @@ const getCardStyles = (index) => {
 
 const Services = () => {
 	return (
-		<section id="services" className="py-24 bg-slate-50 dark:bg-slate-950 relative transition-colors duration-300">
+		<section id="services" className="py-24 bg-white dark:bg-slate-900 relative transition-colors duration-300">
 			{/* Subtle grid background */}
 			<div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.3] dark:opacity-[0.05]"></div>
 

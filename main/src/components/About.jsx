@@ -5,7 +5,7 @@ const About = () => {
 	return (
 		<section
 			id="about"
-			className="py-24 bg-slate-100 dark:bg-slate-900 relative overflow-hidden transition-colors duration-300"
+			className="py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-300"
 		>
 			{/* Decorative blob */}
 			<div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-200/20 dark:bg-violet-900/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none transition-colors duration-300"></div>

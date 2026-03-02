@@ -4,6 +4,7 @@ import { Mail } from './Icons';
 
 const Contact = () => {
 	const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const handleChange = (e) => {
 		setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -24,6 +25,8 @@ const Contact = () => {
 				console.log('Form submitted successfully:', formState);
 				// Reset form
 				setFormState({ name: '', email: '', message: '' });
+				setIsSubmitted(true);
+				setTimeout(() => setIsSubmitted(false), 5000);
 			} else {
 				console.error('Failed to submit form:', response.statusText);
 			}
@@ -45,6 +48,15 @@ const Contact = () => {
 							Book a discovery call or send us a message. Let's find your flow.
 						</p>
 					</div>
+
+					{isSubmitted && (
+						<div className="mb-6 p-4 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-center relative z-10 flex items-center justify-center gap-2 transition-all duration-300">
+							<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+							</svg>
+							<span>Your message was sent successfully! We'll be in touch soon.</span>
+						</div>
+					)}
 
 					<form onSubmit={handleSubmit} className="space-y-6 relative z-10">
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">

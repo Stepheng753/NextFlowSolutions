@@ -48,7 +48,7 @@ const Hero = ({ theme }) => {
 
       {/* 4. Main Content (Top Layer) */}
       <div className="relative z-10 container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
+        <div className="space-y-8 lg:pl-8 xl:pl-16 2xl:pl-20">
           <div className="inline-block">
             <span className="py-1 px-3 rounded-full bg-cyan-100 dark:bg-cyan-950/50 border border-cyan-200 dark:border-cyan-800 text-cyan-700 dark:text-cyan-400 text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
               NextFlow AI Automation
@@ -95,7 +95,10 @@ const Hero = ({ theme }) => {
         {/* Visual Anchor for Right Side */}
         <div className="hidden lg:flex justify-center items-center relative">
           {/* Main Circle Container */}
-          <div className="relative w-96 h-96 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center bg-white/30 dark:bg-slate-900/30 backdrop-blur-md z-20 transition-all duration-300 shadow-2xl shadow-violet-500/10 group">
+          <div className="relative w-96 h-96 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center z-20 transition-all duration-300 shadow-2xl shadow-violet-500/10 group">
+
+            {/* Blurred Background Layer (Isolated to fix square blur glitch) */}
+            <div className="absolute inset-0 rounded-full bg-white/30 dark:bg-slate-900/30 backdrop-blur-md overflow-hidden z-0"></div>
 
             {/* Gradient Pulse Background */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/10 to-violet-500/10 animate-pulse z-0"></div>
