@@ -36,7 +36,10 @@ const MedicalContradiction = ({ navigate }) => {
     };
 
     const handleExportPdf = () => {
-        const element = document.getElementById('report-content');
+        const iframe = document.getElementById('report-iframe');
+        if (!iframe) return;
+        const element = iframe.contentWindow.document.body;
+
         const opt = {
             margin: 1,
             filename: 'medical-contradiction-report.pdf',
@@ -103,8 +106,24 @@ const MedicalContradiction = ({ navigate }) => {
                                 <Button onClick={() => setStep('upload')} variant="primary" className="ml-2 text-sm py-1">New Analysis</Button>
                             </div>
 
-                            <div id="report-content" className="bg-white border border-slate-200 shadow-sm p-8 md:p-12 min-h-[800px] mx-auto max-w-3xl prose prose-slate prose-headings:font-serif">
-                                <div dangerouslySetInnerHTML={{ __html: htmlReport }} />
+                            <div className="bg-white border border-slate-200 shadow-sm mx-auto max-w-3xl overflow-hidden min-h-[800px]">
+                                <iframe
+                                    id="report-iframe"
+                                    title="Medical Contradiction Report"
+                                    className="w-full border-none pointer-events-auto"
+                                    style={{ minHeight: '800px' }}
+                                    srcDoc={htmlReport}
+                                    onLoad={(e) => {
+                                        const iframe = e.target;
+                                        try {
+                                            const doc = iframe.contentDocument || iframe.contentWindow.document;
+                                            doc.body.style.margin = '0';
+                                            doc.body.style.padding = '32px';
+                                            // Dynamically resize iframe to fit the content
+                                            iframe.style.height = doc.documentElement.scrollHeight + 'px';
+                                        } catch (err) { }
+                                    }}
+                                />
                             </div>
                         </div>
                     )}

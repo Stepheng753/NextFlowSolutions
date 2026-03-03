@@ -7,11 +7,11 @@ export const CONFIG = {
         border: '#e2e8f0'   // Slate 200
     },
     endpoints: {
-        conversion: 'https://n8n.stepheng753.com/webhook/sendFigure',
-        feedback: 'https://n8n.stepheng753.com/webhook/sendFeedback',
-        patent: 'https://n8n.stepheng753.com/webhook/sendIDF',
-        medical: 'https://n8n.stepheng753.com/webhook/sendMedical',
-        reconciliateBills: 'https://n8n.stepheng753.com/webhook/sendMedicalBills'
+        conversion: 'https://n8n.stepheng753.com/webhook/figure-conversion',
+        feedback: 'https://n8n.stepheng753.com/webhook/figure-feedback',
+        patent: 'https://n8n.stepheng753.com/webhook/patentability-analysis',
+        medical: 'https://n8n.stepheng753.com/webhook/medical-contradiction',
+        reconciliateBills: 'https://n8n.stepheng753.com/webhook/reconciliate-bills'
     },
     assets: {
         logo: 'https://torreypineslaw.com/art/Torrey-Pines-Law-Group-300-registered.png'
