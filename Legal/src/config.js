@@ -10,7 +10,8 @@ export const CONFIG = {
         conversion: 'https://n8n.stepheng753.com/webhook/sendFigure',
         feedback: 'https://n8n.stepheng753.com/webhook/sendFeedback',
         patent: 'https://n8n.stepheng753.com/webhook/sendIDF',
-        medical: 'https://n8n.stepheng753.com/webhook/sendMedical'
+        medical: 'https://n8n.stepheng753.com/webhook/sendMedical',
+        reconciliateBills: 'https://n8n.stepheng753.com/webhook/sendMedicalBills'
     },
     assets: {
         logo: 'https://torreypineslaw.com/art/Torrey-Pines-Law-Group-300-registered.png'

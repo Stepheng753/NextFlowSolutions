@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, ArrowLeft } from 'lucide-react';
+import { Activity, ArrowLeft, Receipt } from 'lucide-react';
 
 const PILawHome = ({ navigate }) => (
     <div className="max-w-6xl mx-auto px-4 py-12 animate-fade-in">
@@ -37,6 +37,23 @@ const PILawHome = ({ navigate }) => (
                 </p>
                 <span className="text-rose-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                     Begin Analysis &rarr;
+                </span>
+            </div>
+
+            {/* Card 2 */}
+            <div
+                onClick={() => navigate('reconciliate-bills')}
+                className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 cursor-pointer flex flex-col items-center text-center"
+            >
+                <div className="w-20 h-20 bg-teal-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <Receipt className="w-10 h-10 text-teal-700" />
+                </div>
+                <h3 className="font-serif text-2xl font-bold text-slate-800 mb-3">Reconciliate Bills</h3>
+                <p className="text-slate-600 mb-6">
+                    Process medical bills to extract and structure data into a clean, downloadable CSV format.
+                </p>
+                <span className="text-teal-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                    Upload Bills &rarr;
                 </span>
             </div>
         </div>

@@ -6,6 +6,7 @@ import FigureConversion from './IPLaw/FigureConversion';
 import PatentabilityAnalysis from './IPLaw/Patentability';
 import PILawHome from './PILaw/PILawHome';
 import MedicalContradiction from './PILaw/MedicalContradiction';
+import ReconciliateBills from './PILaw/ReconciliateBills';
 import './App.css';
 import { CONFIG } from './config';
 
@@ -50,6 +51,8 @@ export default function App() {
                 return <PILawHome navigate={setView} />;
             case 'medical-contradiction':
                 return <MedicalContradiction navigate={setView} />;
+            case 'reconciliate-bills':
+                return <ReconciliateBills navigate={setView} />;
             case 'home':
             default:
                 return <Home navigate={setView} />;
