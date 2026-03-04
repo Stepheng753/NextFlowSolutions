@@ -9,24 +9,30 @@ import MedicalContradiction from './PILaw/MedicalContradiction';
 import ReconciliateBills from './PILaw/ReconciliateBills';
 import './App.css';
 import { CONFIG } from './config';
+import LegalModal from './components/LegalModal';
 
 export default function App() {
     const [view, setView] = useState('home');
     const [activeClient, setActiveClient] = useState(CONFIG.defaultClient);
+    const [allowedAreas, setAllowedAreas] = useState([]);
+    const [legalModalType, setLegalModalType] = useState(null);
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         let matchedClient = null;
 
-        for (const [key, value] of params.entries()) {
-            const lowerKey = key.toLowerCase();
-            const lowerValue = value ? value.toLowerCase() : '';
-
+        const clientParam = params.get('client');
+        if (clientParam) {
+            const lowerClient = clientParam.toLowerCase();
             matchedClient = CONFIG.clients.find(client =>
-                client.keywords.includes(lowerKey) || client.keywords.includes(lowerValue)
+                client.keywords.includes(lowerClient)
             );
+        }
 
-            if (matchedClient) break;
+        const areasParam = params.get('areas');
+        if (areasParam) {
+            const areasArray = areasParam.toLowerCase().split(',').map(a => a.trim());
+            setAllowedAreas(areasArray);
         }
 
         const currentClient = matchedClient || CONFIG.defaultClient;
@@ -55,7 +61,7 @@ export default function App() {
                 return <ReconciliateBills navigate={setView} />;
             case 'home':
             default:
-                return <Home navigate={setView} />;
+                return <Home navigate={setView} allowedAreas={allowedAreas} />;
         }
     };
 
@@ -71,11 +77,26 @@ export default function App() {
                 <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm">
                     <p>&copy; {new Date().getFullYear()} {activeClient.name}. All rights reserved.</p>
                     <div className="flex gap-4 mt-4 md:mt-0">
-                        <span className="cursor-pointer hover:text-white">Privacy Policy</span>
-                        <span className="cursor-pointer hover:text-white">Terms of Service</span>
+                        <span
+                            onClick={() => setLegalModalType('privacy')}
+                            className="cursor-pointer hover:text-white transition-colors"
+                        >
+                            Privacy Policy
+                        </span>
+                        <span
+                            onClick={() => setLegalModalType('terms')}
+                            className="cursor-pointer hover:text-white transition-colors"
+                        >
+                            Terms of Service
+                        </span>
                     </div>
                 </div>
             </footer>
+            <LegalModal
+                isOpen={legalModalType !== null}
+                type={legalModalType}
+                onClose={() => setLegalModalType(null)}
+            />
         </div>
     );
 }

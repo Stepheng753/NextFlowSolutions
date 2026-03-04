@@ -6,7 +6,8 @@ export default defineConfig({
     base: '/Legal/',
     plugins: [react()],
     server: {
-        host: true
+        host: true,
+        port: 6399
     }
 })
 

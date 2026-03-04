@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Zap } from './Icons';
 
 const Footer = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('StephenG753@Gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <footer className="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 py-12 transition-colors duration-300">
       <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
@@ -17,9 +26,10 @@ const Footer = () => {
         </div>
 
         <div className="flex space-x-6 mt-4 md:mt-0">
-          <a href="#" className="text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Twitter</a>
-          <a href="#" className="text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">LinkedIn</a>
-          <a href="#" className="text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Email</a>
+          <a href="https://www.linkedin.com/in/stepheng753/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">LinkedIn</a>
+          <button onClick={handleEmailClick} className="text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+            {copied ? 'Email Copied!' : 'Email'}
+          </button>
         </div>
       </div>
     </footer>
