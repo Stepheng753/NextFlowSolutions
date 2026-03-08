@@ -25,17 +25,9 @@ module.exports = {
         },
         {
             name: "nextflow-legal",
-            script: "serve",
+            script: "Legal/server.js",
             env: {
-                PM2_SERVE_PATH: './Legal/dist',
-                PM2_SERVE_PORT: 6399,
-                PM2_SERVE_SPA: 'true',
-                PM2_SERVE_HOMEPAGE: '/index.html',
-                ...(legalAuth.username && legalAuth.password ? {
-                    PM2_SERVE_BASIC_AUTH: 'true',
-                    PM2_SERVE_BASIC_AUTH_USERNAME: legalAuth.username,
-                    PM2_SERVE_BASIC_AUTH_PASSWORD: legalAuth.password
-                } : {})
+                PORT: 6399
             }
         }
     ]
