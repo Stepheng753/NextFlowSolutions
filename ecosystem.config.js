@@ -1,16 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
-let legalAuth = {};
-try {
-    const authPath = path.join(__dirname, 'legal-auth.json');
-    if (fs.existsSync(authPath)) {
-        legalAuth = JSON.parse(fs.readFileSync(authPath, 'utf8'));
-    }
-} catch (err) {
-    console.error('Error reading legal-auth.json:', err);
-}
-
 module.exports = {
     apps: [
         {
