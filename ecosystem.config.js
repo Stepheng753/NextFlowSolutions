@@ -32,10 +32,14 @@ module.exports = {
                 PM2_SERVE_SPA: 'true',
                 PM2_SERVE_HOMEPAGE: '/index.html',
                 ...(legalAuth.username && legalAuth.password ? {
+                    PM2_SERVE_BASIC_AUTH: 'true',
                     PM2_SERVE_BASIC_AUTH_USERNAME: legalAuth.username,
                     PM2_SERVE_BASIC_AUTH_PASSWORD: legalAuth.password
                 } : {})
-            }
+            },
+            ...(legalAuth.username && legalAuth.password ? {
+                args: `--basic-auth-username ${legalAuth.username} --basic-auth-password ${legalAuth.password}`
+            } : {})
         }
     ]
 };
