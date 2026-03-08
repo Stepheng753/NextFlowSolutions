@@ -36,10 +36,7 @@ module.exports = {
                     PM2_SERVE_BASIC_AUTH_USERNAME: legalAuth.username,
                     PM2_SERVE_BASIC_AUTH_PASSWORD: legalAuth.password
                 } : {})
-            },
-            ...(legalAuth.username && legalAuth.password ? {
-                args: `--basic-auth-username ${legalAuth.username} --basic-auth-password ${legalAuth.password}`
-            } : {})
+            }
         }
     ]
 };
