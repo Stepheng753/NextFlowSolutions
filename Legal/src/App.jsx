@@ -7,6 +7,7 @@ import PatentabilityAnalysis from './IPLaw/Patentability';
 import PILawHome from './PILaw/PILawHome';
 import MedicalContradiction from './PILaw/MedicalContradiction';
 import ReconciliateBills from './PILaw/ReconciliateBills';
+import ClioIntake from './Intake/ClioIntake';
 import './App.css';
 import { CONFIG } from './config';
 import LegalModal from './components/LegalModal';
@@ -59,6 +60,8 @@ export default function App() {
                 return <MedicalContradiction navigate={setView} />;
             case 'reconciliate-bills':
                 return <ReconciliateBills navigate={setView} />;
+            case 'clio-intake':
+                return <ClioIntake navigate={setView} />;
             case 'home':
             default:
                 return <Home navigate={setView} allowedAreas={allowedAreas} />;

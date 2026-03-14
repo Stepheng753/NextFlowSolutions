@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileImage, Gavel, ArrowLeft } from 'lucide-react';
+import { FileImage, Gavel, ArrowLeft, ClipboardList } from 'lucide-react';
 
 const IPLawHome = ({ navigate }) => (
     <div className="max-w-6xl mx-auto px-4 py-12 animate-fade-in">
@@ -22,7 +22,7 @@ const IPLawHome = ({ navigate }) => (
             </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Card 1 */}
             <div
                 onClick={() => navigate('figure')}
@@ -54,6 +54,23 @@ const IPLawHome = ({ navigate }) => (
                 </p>
                 <span className="text-slate-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                     Begin Analysis &rarr;
+                </span>
+            </div>
+
+            {/* Card 3 */}
+            <div
+                onClick={() => navigate('clio-intake')}
+                className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 cursor-pointer flex flex-col items-center text-center"
+            >
+                <div className="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <ClipboardList className="w-10 h-10 text-amber-700" />
+                </div>
+                <h3 className="font-serif text-2xl font-bold text-slate-800 mb-3">IDF to Clio</h3>
+                <p className="text-slate-600 mb-6">
+                    Securely upload new client information and Invention Disclosure Forms to Clio.
+                </p>
+                <span className="text-amber-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                    Go to Intake &rarr;
                 </span>
             </div>
         </div>

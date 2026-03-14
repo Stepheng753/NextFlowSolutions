@@ -11,7 +11,8 @@ export const CONFIG = {
         feedback: 'https://n8n.stepheng753.com/webhook/figure-feedback',
         patent: 'https://n8n.stepheng753.com/webhook/patentability-analysis',
         medical: 'https://n8n.stepheng753.com/webhook/medical-contradiction',
-        reconciliateBills: 'https://n8n.stepheng753.com/webhook/reconciliate-bills'
+        reconciliateBills: 'https://n8n.stepheng753.com/webhook/reconciliate-bills',
+        clioIntake: 'https://n8n.stepheng753.com/webhook-test/clio-intake'
     },
     assets: {
         logo: 'https://torreypineslaw.com/art/Torrey-Pines-Law-Group-300-registered.png'
