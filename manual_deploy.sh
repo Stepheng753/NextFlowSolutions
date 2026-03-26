@@ -15,7 +15,6 @@ case $choice in
     cd ~/Development/NextFlowSolutions/main
     npm install
     npm run build
-    pm2 reload nextflow-main
     echo "✅ Main Site Deployed!"
     ;;
   2)
@@ -23,7 +22,6 @@ case $choice in
     cd ~/Development/NextFlowSolutions/Legal
     npm install
     npm run build
-    pm2 reload nextflow-legal
     echo "✅ Client Site Deployed!"
     ;;
   3)
@@ -32,13 +30,11 @@ case $choice in
     cd ~/Development/NextFlowSolutions/main
     npm install
     npm run build
-    pm2 reload nextflow-main
     
     # Client
     cd ~/Development/NextFlowSolutions/Legal
     npm install
     npm run build
-    pm2 reload nextflow-legal
     
     echo "✅ All Systems Deployed!"
     ;;

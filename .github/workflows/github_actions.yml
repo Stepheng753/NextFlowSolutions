@@ -37,7 +37,6 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            pm2 reload nextflow-main
 
             # 2. Client/Legal Application
             echo "--- Processing Legal ---"
@@ -45,6 +44,5 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            pm2 reload nextflow-legal
 
             echo "✅ All Systems Deployed!"
