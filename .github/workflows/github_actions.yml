@@ -45,4 +45,8 @@ jobs:
             npm install
             npm run build
 
+            sudo systemctl daemon-reload
+            sudo nginx -t
+            sudo systemctl reload nginx
+
             echo "✅ All Systems Deployed!"
