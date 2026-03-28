@@ -120,4 +120,4 @@ dist
 # Local auth for legal page
 legal-auth.json
 
-src/config.js
+Legal/src/config.js
