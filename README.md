@@ -87,27 +87,6 @@ npm run dev
 
 ---
 
-## ⚖️ Dynamic Client Branding (Legal Portal)
-
-The Legal frontend (`/Legal`) supports dynamic white-labeling and domain branding via URL parameters.
-
-To view specific branding, append one of the recognized identifiers to the base URL as a query parameter.
-**Supported Identifiers:**
-- `torreypineslaw`
-- `torreypineslawgroup`
-- `torreypinesconsulting`
-- `tpl`
-- `tpc`
-- `legal`
-
-**Examples:**
-* `http://localhost:5174/?legal`
-* `http://localhost:5174/?client=tpl`
-
-*(Note: If no valid identifier is provided, the application safely defaults to a "Placeholder Law Group" theme).*
-
----
-
 <div align="center">
   <i>Developed and engineered by Stephen Giang & NextFlow Solutions.</i>
 </div> 
