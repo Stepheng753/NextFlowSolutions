@@ -144,7 +144,7 @@ const UglowApp = () => {
                 <div className="max-w-6xl mx-auto px-4 py-12 animate-fade-in">
                     <div className="text-center mb-16">
                         <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-                            Bill Uglow - Turtle on NOS 🐢
+                            Bill Uglow - Turtle with a Boost 🐢🚀
                         </h2>
                         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                             Select an option below to find your target audience or generate automated emails.
