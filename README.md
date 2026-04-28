@@ -37,18 +37,14 @@ We focus on bridging the gap between manual, repetitive business processes and f
 ### Key Focus Areas
 1. **AI Integration:** Implementing Large Language Models (LLMs) and generative artificial intelligence into highly actionable, secure pipelines.
 2. **Workflow Automation:** Building end-to-end automation of repetitive tasks.
-3. **Idea Generation:** Leveraging AI to assist in brainstorming, creative synthesis, and document drafting (e.g., Legal workflows).
-
+3. **Idea Generation:** Leveraging AI to assist in brainstorming, creative synthesis, and document drafting.
 ---
 
 ## 🏗️ Repository Structure
 
-This monorepo currently contains two primary React + Vite frontends representing distinct client portal applications:
-
 | Directory | Description | Default Port |
 | :--- | :--- | :--- |
-| **`/main`** | The main NextFlow Solutions dashboard application. | `localhost:5173` |
-| **`/Legal`** | Custom dynamically-branded portal built for automating logic and form completion in the Legal industry. | `localhost:5174` |
+| **`/`** | The NextFlow Solutions dashboard application. | `localhost:5173` |
 
 ---
 
@@ -56,28 +52,7 @@ This monorepo currently contains two primary React + Vite frontends representing
 
 To start developing and running the local servers, you will need **Node.js** and **npm** installed on your machine. 
 
-### ⚡ Quick Start
-
-For simultaneous execution of both the `main` and `Legal` environments, a bash script is provided at the root:
-
 ```bash
-# Make the script executable
-chmod +x run_dev.sh
-
-# Start all development servers
-./run_dev.sh
-```
-
-*(Press `Ctrl+C` to gracefully kill both servers.)*
-
-### ⚙️ Manual Start
-
-If you prefer to run the portals individually:
-
-```bash
-# Navigate to the specific client directory (e.g., Legal)
-cd Legal
-
 # Ensure dependencies are installed
 npm install
 

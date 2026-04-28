@@ -66,9 +66,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
 
-          <Button variant="outline" className="!py-2 !px-4 text-xs" onClick={() => window.location.href = '/Legal/'}>
-            Legal Workflows
-          </Button>
+
 
           <Button variant="purple" className="!py-2 !px-4 text-xs" onClick={() => scrollToSection('#contact')}>
             Get Started
@@ -104,9 +102,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               {item.label}
             </button>
           ))}
-          <Button variant="outline" className="w-full justify-center" onClick={() => window.location.href = '/Legal/'}>
-            Legal Workflows
-          </Button>
+
           <Button variant="gradient" className="w-full justify-center" onClick={() => scrollToSection('#contact')}>
             Get Started
           </Button>

@@ -33,14 +33,7 @@ jobs:
 
             # 1. Main Application
             echo "--- Processing Main ---"
-            cd ~/Development/NextFlowSolutions/main
-            git pull origin main
-            npm install
-            npm run build
-
-            # 2. Client/Legal Application
-            echo "--- Processing Legal ---"
-            cd ~/Development/NextFlowSolutions/Legal
+            cd ~/Development/NextFlowSolutions
             git pull origin main
             npm install
             npm run build
