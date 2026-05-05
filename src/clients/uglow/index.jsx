@@ -5,11 +5,12 @@ const UglowApp = () => {
     const [currentView, setCurrentView] = useState("home"); // 'home' | 'form' | 'success' | 'send'
     const [isLoading, setIsLoading] = useState(false);
     const [loadingText, setLoadingText] = useState("");
-    const [formData, setFormData] = useState({ brand: "", product: "", instructions: "" });
+    const [formData, setFormData] = useState({ brand: "", product: "", instructions: "", companies: "" });
     const [generatedCount, setGeneratedCount] = useState(null);
     const [isGeneratingPending, setIsGeneratingPending] = useState(false);
     const [emailsToSend, setEmailsToSend] = useState(5);
     const [sendNotification, setSendNotification] = useState(false);
+    const [formType, setFormType] = useState("people");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -23,25 +24,41 @@ const UglowApp = () => {
         setCurrentView("home");
     };
 
-    const goToForm = () => {
+    const goToForm = (type) => {
         // Clear inputs when going to the form
-        setFormData({ brand: "", product: "", instructions: "" });
+        setFormData({ brand: "", product: "", instructions: "", companies: "" });
         setGeneratedCount(null);
+        setFormType(typeof type === "string" ? type : "people");
         setCurrentView("form");
     };
 
     const handleFindPeopleSubmit = async (e) => {
         e.preventDefault();
-        setLoadingText("Finding Target Audience...");
+        setLoadingText(formType === "companies" ? "Finding Audience from Companies..." : "Finding Target Audience...");
         setIsLoading(true);
         setGeneratedCount(null);
+        const url =
+            formType === "companies"
+                ? "https://n8n.stepheng753.com/webhook/uglow/find-people-from-companies"
+                : "https://n8n.stepheng753.com/webhook/uglow/find-people";
+
+        let payload = { ...formData };
+        if (formType === "companies") {
+            const parsedCompanies = formData.companies
+                .split(/[\n,;]+/)
+                .map((c) => c.trim())
+                .filter((c) => c.length > 0)
+                .join(", ");
+            payload.companies = parsedCompanies;
+        }
+
         try {
-            const response = await fetch("https://n8n.stepheng753.com/webhook/uglow/find-people", {
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(payload),
             });
 
             if (response.ok) {
@@ -150,10 +167,10 @@ const UglowApp = () => {
                             Select an option below to find your target audience or generate automated emails.
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto justify-center">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto justify-center">
                         {/* Card 1 */}
                         <div
-                            onClick={goToForm}
+                            onClick={() => goToForm("people")}
                             className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 cursor-pointer flex flex-col items-center text-center"
                         >
                             <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -162,6 +179,21 @@ const UglowApp = () => {
                             <h3 className="font-serif text-2xl font-bold text-slate-800 mb-3">Find People</h3>
                             <p className="text-slate-600 mb-6">Target your ideal audience and populate your list.</p>
                             <span className="text-blue-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                                Get Started &rarr;
+                            </span>
+                        </div>
+
+                        {/* Card 1.5 */}
+                        <div
+                            onClick={() => goToForm("companies")}
+                            className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 cursor-pointer flex flex-col items-center text-center"
+                        >
+                            <div className="w-20 h-20 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <Users className="w-10 h-10 text-cyan-700" />
+                            </div>
+                            <h3 className="font-serif text-2xl font-bold text-slate-800 mb-3">Find from Companies</h3>
+                            <p className="text-slate-600 mb-6">Target audience from specific companies.</p>
+                            <span className="text-cyan-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                                 Get Started &rarr;
                             </span>
                         </div>
@@ -214,7 +246,7 @@ const UglowApp = () => {
 
                     <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
                         <h2 className="font-serif text-3xl font-bold text-slate-800 mb-6 text-center">
-                            Find Target Audience
+                            {formType === "companies" ? "Find Audience from Companies" : "Find Target Audience"}
                         </h2>
                         <form onSubmit={handleFindPeopleSubmit} className="space-y-6">
                             <div>
@@ -232,21 +264,42 @@ const UglowApp = () => {
                                     placeholder="Enter brand name"
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="product" className="block text-sm font-medium text-slate-700 mb-2">
-                                    Product
-                                </label>
-                                <input
-                                    type="text"
-                                    id="product"
-                                    name="product"
-                                    value={formData.product}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black transition-all"
-                                    placeholder="Enter product details"
-                                />
-                            </div>
+                            {formType === "people" ? (
+                                <div>
+                                    <label htmlFor="product" className="block text-sm font-medium text-slate-700 mb-2">
+                                        Product
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="product"
+                                        name="product"
+                                        value={formData.product}
+                                        onChange={handleInputChange}
+                                        required
+                                        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black transition-all"
+                                        placeholder="Enter product details"
+                                    />
+                                </div>
+                            ) : (
+                                <div>
+                                    <label
+                                        htmlFor="companies"
+                                        className="block text-sm font-medium text-slate-700 mb-2"
+                                    >
+                                        Companies to Search
+                                    </label>
+                                    <textarea
+                                        id="companies"
+                                        name="companies"
+                                        value={formData.companies}
+                                        onChange={handleInputChange}
+                                        required
+                                        rows="6"
+                                        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black transition-all"
+                                        placeholder="Paste 50-100 companies separated by commas, newlines, or semicolons"
+                                    ></textarea>
+                                </div>
+                            )}
                             <div>
                                 <label htmlFor="instructions" className="block text-sm font-medium text-slate-700 mb-2">
                                     Additional Instructions
