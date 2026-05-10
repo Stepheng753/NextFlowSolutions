@@ -6,8 +6,6 @@ const UglowApp = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [loadingText, setLoadingText] = useState("");
     const [formData, setFormData] = useState({ brand: "", product: "", instructions: "", companies: "" });
-    const [generatedCount, setGeneratedCount] = useState(null);
-    const [isGeneratingPending, setIsGeneratingPending] = useState(false);
     const [emailsToSend, setEmailsToSend] = useState(5);
     const [sendNotification, setSendNotification] = useState(false);
     const [formType, setFormType] = useState("people");
@@ -18,8 +16,6 @@ const UglowApp = () => {
     };
 
     const goToHome = () => {
-        setGeneratedCount(null);
-        setIsGeneratingPending(false);
         setSendNotification(false);
         setCurrentView("home");
     };
@@ -27,7 +23,6 @@ const UglowApp = () => {
     const goToForm = (type) => {
         // Clear inputs when going to the form
         setFormData({ brand: "", product: "", instructions: "", companies: "" });
-        setGeneratedCount(null);
         setFormType(typeof type === "string" ? type : "people");
         setCurrentView("form");
     };
@@ -36,7 +31,6 @@ const UglowApp = () => {
         e.preventDefault();
         setLoadingText(formType === "companies" ? "Finding Audience from Companies..." : "Finding Target Audience...");
         setIsLoading(true);
-        setGeneratedCount(null);
         const url =
             formType === "companies"
                 ? "https://n8n.stepheng753.com/webhook/uglow/find-people-from-companies"
@@ -68,42 +62,6 @@ const UglowApp = () => {
             }
         } catch (error) {
             console.error("Error submitting form:", error);
-            alert("Error connecting to webhook.");
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const handleGenerateEmails = async () => {
-        setLoadingText("Generating Emails...");
-        setIsLoading(true);
-        setGeneratedCount(null);
-        setIsGeneratingPending(false);
-        try {
-            const response = await fetch("https://n8n.stepheng753.com/webhook/uglow/generate-emails", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({}),
-            });
-
-            if (response.status === 202) {
-                setIsGeneratingPending(true);
-            } else if (response.ok) {
-                const data = await response.json().catch(() => ({}));
-                let count = 0;
-                if (Array.isArray(data) && data.length > 0) {
-                    count = data[0].number_emails || 0;
-                } else if (data && typeof data === "object") {
-                    count = data.number_emails || 0;
-                }
-                setGeneratedCount(count);
-            } else {
-                alert("Something went wrong. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error generating emails:", error);
             alert("Error connecting to webhook.");
         } finally {
             setIsLoading(false);
@@ -159,15 +117,75 @@ const UglowApp = () => {
             {/* Home View */}
             {currentView === "home" && (
                 <div className="max-w-6xl mx-auto px-4 py-12 animate-fade-in">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-10">
                         <h2 className="font-serif text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-                            Bill Uglow - Turtle with a Boost 🐢🚀
+                            Bill Uglow - Turtle Turned Hare 🐢→🐇
                         </h2>
                         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                            Select an option below to find your target audience or generate automated emails.
+                            Follow the instructions below to find contacts, review drafts, and send automated emails.
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto justify-center">
+
+                    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-12 text-left max-w-4xl mx-auto">
+                        <h3 className="font-serif text-2xl font-bold text-slate-800 mb-6 border-b pb-4 flex items-center gap-3">
+                            <Info className="w-6 h-6 text-blue-600" />
+                            How to Use This System
+                        </h3>
+
+                        <div className="space-y-6">
+                            <div className="flex gap-4">
+                                <div className="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-lg">
+                                    1
+                                </div>
+                                <div>
+                                    <h4 className="text-xl font-bold text-slate-800 mb-2">
+                                        Find Contacts & Draft Emails
+                                    </h4>
+                                    <p className="text-slate-600 text-lg">
+                                        Click either <strong>Find People</strong> or{" "}
+                                        <strong>Find from Companies</strong> below. Fill out the form with your Brand,
+                                        Product, and Instructions, then click Submit. The system will find contacts and
+                                        draft emails for you automatically.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4">
+                                <div className="flex-shrink-0 w-10 h-10 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center font-bold text-lg">
+                                    2
+                                </div>
+                                <div>
+                                    <h4 className="text-xl font-bold text-slate-800 mb-2">Review Your List</h4>
+                                    <p className="text-slate-600 text-lg">
+                                        After submitting, you will see a page to review your Google Sheet. Open the
+                                        sheet and review your list of contacts and drafted emails. <br />
+                                        <br />• If you want to email them: Type <strong>Ready</strong> (ensure you use a
+                                        capital "R") in the "Ready to Send" column.
+                                        <br />
+                                        • To edit a subject line: Click the box once and type your new subject.
+                                        <br />• To edit a message: Double-click the box to view the full text and make
+                                        any changes.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4">
+                                <div className="flex-shrink-0 w-10 h-10 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center font-bold text-lg">
+                                    3
+                                </div>
+                                <div>
+                                    <h4 className="text-xl font-bold text-slate-800 mb-2">Send the Emails</h4>
+                                    <p className="text-slate-600 text-lg">
+                                        Return to this main page and click <strong>Send Emails</strong>. Enter the
+                                        maximum number of emails you want to send at this time. For example, if you
+                                        enter "2", it will send the first 2 emails marked "Ready".
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto justify-center">
                         {/* Card 1 */}
                         <div
                             onClick={() => goToForm("people")}
@@ -195,23 +213,6 @@ const UglowApp = () => {
                             <p className="text-slate-600 mb-6">Target audience from specific companies.</p>
                             <span className="text-cyan-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                                 Get Started &rarr;
-                            </span>
-                        </div>
-
-                        {/* Card 2 */}
-                        <div
-                            onClick={() => setCurrentView("success")}
-                            className={`group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 cursor-pointer flex flex-col items-center text-center`}
-                        >
-                            <div className="w-20 h-20 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <Mail className="w-10 h-10 text-emerald-700" />
-                            </div>
-                            <h3 className="font-serif text-2xl font-bold text-slate-800 mb-3">Generate Emails</h3>
-                            <p className="text-slate-600 mb-6">
-                                Review your list and run the email generation workflow.
-                            </p>
-                            <span className="text-emerald-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                Go to Review &rarr;
                             </span>
                         </div>
 
@@ -243,6 +244,31 @@ const UglowApp = () => {
                         <ArrowLeft className="w-5 h-5 mr-2" />
                         Back to Home
                     </button>
+
+                    <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                        <h3 className="font-serif text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 text-blue-600" />
+                            Instructions
+                        </h3>
+                        <p className="text-slate-600 mb-2">
+                            1. Fill out the fields below and click <strong>Submit</strong>.
+                        </p>
+                        <p className="text-slate-600 mb-2">
+                            2. Wait for the success page, then review your results here: <br />
+                            <a
+                                href="https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-600 font-bold hover:underline"
+                            >
+                                https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY
+                            </a>
+                        </p>
+                        <p className="text-slate-600">
+                            3. Type <strong>Ready</strong> in the "Ready to Send" column for any contact you wish to
+                            email.
+                        </p>
+                    </div>
 
                     <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
                         <h2 className="font-serif text-3xl font-bold text-slate-800 mb-6 text-center">
@@ -319,8 +345,12 @@ const UglowApp = () => {
                                 disabled={isLoading}
                                 className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all flex items-center justify-center ${
                                     isLoading
-                                        ? "bg-blue-500 cursor-not-allowed"
-                                        : "bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg"
+                                        ? formType === "companies"
+                                            ? "bg-cyan-600 cursor-not-allowed"
+                                            : "bg-blue-500 cursor-not-allowed"
+                                        : formType === "companies"
+                                          ? "bg-cyan-700 hover:bg-cyan-800 shadow-md hover:shadow-lg"
+                                          : "bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg"
                                 }`}
                             >
                                 {isLoading ? (
@@ -350,79 +380,26 @@ const UglowApp = () => {
 
                     <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
                         <h2 className="font-serif text-3xl font-bold text-slate-800 mb-6 text-center">
-                            Review Target Audience
+                            Success! Your Audience is Ready for Review
                         </h2>
 
-                        {isGeneratingPending && (
-                            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-center flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in">
-                                <Info className="w-6 h-6 text-blue-600" />
-                                <h3 className="text-lg text-blue-800 font-medium">
-                                    Please come back in a few minutes as there are a lot of emails to generate.
-                                </h3>
-                            </div>
-                        )}
-
-                        {generatedCount !== null && (
-                            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-6 text-center flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in">
-                                <CheckCircle className="w-6 h-6 text-emerald-600" />
-                                <h3 className="text-lg text-emerald-800 font-medium">
-                                    {generatedCount} emails have been generated and added to the sheet!
-                                </h3>
-                            </div>
-                        )}
-
-                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-center flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <CheckCircle className="w-6 h-6 text-blue-600" />
-                            <h3 className="text-lg text-slate-800">
-                                <span className="font-semibold text-blue-800">Click Here for Full Review:</span>{" "}
+                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8 text-center flex flex-col items-center justify-center gap-4">
+                            <CheckCircle className="w-12 h-12 text-blue-600" />
+                            <h3 className="text-xl text-slate-800 max-w-2xl">
+                                We've found the contacts and drafted the emails for you. Please click the link below to
+                                review them in your Google Sheet.
+                            </h3>
+                            <h3 className="text-2xl text-slate-800 mt-2">
                                 <a
                                     href="https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY/edit?gid=0#gid=0"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="text-blue-600 font-bold hover:underline"
                                 >
-                                    Email Automater
+                                    &rarr; Click Here to Review the Google Sheet &larr;
                                 </a>
                             </h3>
                         </div>
-
-                        <div className="bg-slate-50 rounded-xl border border-slate-200 p-2 mb-8 h-[600px] relative overflow-hidden flex items-center justify-center">
-                            {/* Sheet Preview / Fallback */}
-                            <iframe
-                                src="https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY/edit?gid=0#gid=0&rm=minimal"
-                                className="w-full h-full border-0 rounded-lg absolute inset-0 z-10"
-                                title="Google Sheet Preview"
-                            />
-                            {/* Fallback in case iframe fails */}
-                            <div className="absolute inset-0 z-0 flex flex-col items-center justify-center text-slate-400 bg-slate-50 rounded-lg">
-                                <div className="grid grid-cols-4 w-full px-8 gap-4 opacity-50 mb-4">
-                                    <div className="h-6 bg-slate-200 rounded"></div>
-                                    <div className="h-6 bg-slate-200 rounded"></div>
-                                    <div className="h-6 bg-slate-200 rounded"></div>
-                                    <div className="h-6 bg-slate-200 rounded"></div>
-                                </div>
-                                <p>Sheet Preview Blocked? Click the link above to view directly.</p>
-                            </div>
-                        </div>
-
-                        <button
-                            onClick={handleGenerateEmails}
-                            disabled={isLoading}
-                            className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all flex items-center justify-center ${
-                                isLoading
-                                    ? "bg-blue-500 cursor-not-allowed"
-                                    : "bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg"
-                            }`}
-                        >
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                                    Generating...
-                                </>
-                            ) : (
-                                "Generate Emails"
-                            )}
-                        </button>
                     </div>
                 </div>
             )}
@@ -437,6 +414,29 @@ const UglowApp = () => {
                         <ArrowLeft className="w-5 h-5 mr-2" />
                         Back to Home
                     </button>
+
+                    <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                        <h3 className="font-serif text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <Info className="w-5 h-5 text-purple-600" />
+                            Instructions
+                        </h3>
+                        <p className="text-slate-600 mb-2">
+                            1. Ensure you have reviewed your Google Sheet and marked contacts as <strong>Ready</strong>:
+                            <br />
+                            <a
+                                href="https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-purple-600 font-bold hover:underline break-all"
+                            >
+                                https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY
+                            </a>
+                        </p>
+                        <p className="text-slate-600">
+                            2. Enter the maximum number of emails you want to send below and click{" "}
+                            <strong>Send Emails</strong>.
+                        </p>
+                    </div>
 
                     <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
                         <h2 className="font-serif text-3xl font-bold text-slate-800 mb-6 text-center">Send Emails</h2>
