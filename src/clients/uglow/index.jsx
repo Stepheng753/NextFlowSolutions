@@ -8,7 +8,7 @@ const UglowApp = () => {
     const [formData, setFormData] = useState({ brand: "", product: "", instructions: "", companies: "" });
     const [emailsToSend, setEmailsToSend] = useState(5);
     const [sendNotification, setSendNotification] = useState(false);
-    const [formType, setFormType] = useState("people");
+    const [formType, setFormType] = useState("");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -23,7 +23,7 @@ const UglowApp = () => {
     const goToForm = (type) => {
         // Clear inputs when going to the form
         setFormData({ brand: "", product: "", instructions: "", companies: "" });
-        setFormType(typeof type === "string" ? type : "people");
+        setFormType("");
         setCurrentView("form");
     };
 
@@ -142,10 +142,7 @@ const UglowApp = () => {
                                         Find Contacts & Draft Emails
                                     </h4>
                                     <p className="text-slate-600 text-lg">
-                                        Click either <strong>Find People</strong> or{" "}
-                                        <strong>Find from Companies</strong> below. Fill out the form with your Brand,
-                                        Product, and Instructions, then click Submit. The system will find contacts and
-                                        draft emails for you automatically.
+                                        Click <strong>Find People</strong> below. Select your search method (Product Search or Paste Companies). Fill out the form with your Brand, Product/Companies, and Instructions, then click Submit. The system will find contacts and draft emails for you automatically.
                                     </p>
                                 </div>
                             </div>
@@ -157,8 +154,17 @@ const UglowApp = () => {
                                 <div>
                                     <h4 className="text-xl font-bold text-slate-800 mb-2">Review Your List</h4>
                                     <p className="text-slate-600 text-lg">
-                                        After submitting, you will see a page to review your Google Sheet. Open the
-                                        sheet and review your list of contacts and drafted emails. <br />
+                                        After submitting, you will see a page to review your Google Sheet. Open the sheet here: <br />
+                                        <a
+                                            href="https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="text-blue-600 font-bold hover:underline break-all text-base"
+                                        >
+                                            https://docs.google.com/spreadsheets/d/1-vev5vgvRcMkB8CohCWrUDWA8OE8--EbyJ8rGwoKAmY
+                                        </a>
+                                        <br />
+                                        and review your list of contacts and drafted emails. <br />
                                         <br />• If you want to email them: Type <strong>Ready</strong> (ensure you use a
                                         capital "R") in the "Ready to Send" column.
                                         <br />
@@ -185,7 +191,7 @@ const UglowApp = () => {
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto justify-center">
+                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto justify-center">
                         {/* Card 1 */}
                         <div
                             onClick={() => goToForm("people")}
@@ -197,21 +203,6 @@ const UglowApp = () => {
                             <h3 className="font-serif text-2xl font-bold text-slate-800 mb-3">Find People</h3>
                             <p className="text-slate-600 mb-6">Target your ideal audience and populate your list.</p>
                             <span className="text-blue-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
-                                Get Started &rarr;
-                            </span>
-                        </div>
-
-                        {/* Card 1.5 */}
-                        <div
-                            onClick={() => goToForm("companies")}
-                            className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 cursor-pointer flex flex-col items-center text-center"
-                        >
-                            <div className="w-20 h-20 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <Users className="w-10 h-10 text-cyan-700" />
-                            </div>
-                            <h3 className="font-serif text-2xl font-bold text-slate-800 mb-3">Find from Companies</h3>
-                            <p className="text-slate-600 mb-6">Target audience from specific companies.</p>
-                            <span className="text-cyan-700 font-semibold flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                                 Get Started &rarr;
                             </span>
                         </div>
@@ -250,9 +241,17 @@ const UglowApp = () => {
                             <Info className="w-5 h-5 text-blue-600" />
                             Instructions
                         </h3>
-                        <p className="text-slate-600 mb-2">
-                            1. Fill out the fields below and click <strong>Submit</strong>.
-                        </p>
+                        <div className="text-slate-600 mb-4">
+                            <p className="font-semibold mb-1">1. Fill out the form:</p>
+                            <ul className="list-disc list-outside ml-6 space-y-1 mb-2">
+                                <li>Enter your <strong>Brand</strong> name.</li>
+                                <li>Select a <strong>Search Method</strong> from the dropdown.</li>
+                                <li>If you chose <em>Product Search</em>, enter the product or service you are promoting.</li>
+                                <li>If you chose <em>Paste Companies</em>, paste a list of 50-100 target companies (separated by commas, semicolons, or newlines).</li>
+                                <li>Add any <strong>Additional Instructions</strong> to help guide the email drafting process.</li>
+                            </ul>
+                            <p className="ml-6">Click <strong>Submit</strong> to start the workflow.</p>
+                        </div>
                         <p className="text-slate-600 mb-2">
                             2. Wait for the success page, then review your results here: <br />
                             <a
@@ -290,7 +289,23 @@ const UglowApp = () => {
                                     placeholder="Enter brand name"
                                 />
                             </div>
-                            {formType === "people" ? (
+                            <div>
+                                <label htmlFor="searchMethod" className="block text-sm font-medium text-slate-700 mb-2">
+                                    Search Method
+                                </label>
+                                <select
+                                    id="searchMethod"
+                                    value={formType}
+                                    onChange={(e) => setFormType(e.target.value)}
+                                    required
+                                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black transition-all bg-white"
+                                >
+                                    <option value="" disabled>Select a search method</option>
+                                    <option value="people">Product Search</option>
+                                    <option value="companies">Paste Companies</option>
+                                </select>
+                            </div>
+                            {formType === "people" && (
                                 <div>
                                     <label htmlFor="product" className="block text-sm font-medium text-slate-700 mb-2">
                                         Product
@@ -306,7 +321,8 @@ const UglowApp = () => {
                                         placeholder="Enter product details"
                                     />
                                 </div>
-                            ) : (
+                            )}
+                            {formType === "companies" && (
                                 <div>
                                     <label
                                         htmlFor="companies"
